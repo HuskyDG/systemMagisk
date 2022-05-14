@@ -32,7 +32,9 @@ sh /data/media/0/Documents/systemMagisk/script.sh
 
 ### Important
 
-- systemMagisk does not support pre-init patch as tranditional systemless Magisk but live patch. NOT RECOMMENDED to flash this on real phone because live patch sepolicy rules causes kernel panic on some devices.
+- systemMagisk doesn't have pre-init SELinux Policy patch but live SELinux Policy patch which can cause some problem on some devices.
+- Some devices will not boot with modified system partition due to vbmeta verify.
+
 
 ### Others
 
