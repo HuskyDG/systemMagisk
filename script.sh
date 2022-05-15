@@ -150,11 +150,15 @@ EOF
 cat <<EOF >$root/system/etc/init/magisk/prepare.sh
 #!/system/bin/sh
           restorecon -R /data/adb/magisk
+    mkdir /dev/.sepolicy_load
+    for sedir in /data/adb/modules_update /data/adb/modules; do
           for module in \$(ls /data/adb/modules); do
-              if ! [ -f "/data/adb/modules/\$module/disable" ] && [ -f "/data/adb/modules/\$module/sepolicy.rule" ]; then
-                  ( cat "/data/adb/modules/\$module/sepolicy.rule"; echo ) >>/dev/gaga-magisk/.magisk/sepolicy.rules
+              if ! [ -f "\$sedir/\$module/disable" ] && [ -f "/data/adb/modules/\$module/sepolicy.rule" ] && [ ! -f "/dev/.sepolicy_load/\$module" ]; then
+                  ( cat "\sedir/\$module/sepolicy.rule"; echo ) >>/dev/gaga-magisk/.magisk/sepolicy.rules
+                  echo >"/dev/.sepolicy_load/\$module"
               fi
           done
+    done
           /system/etc/init/magisk/magiskpolicy --live --apply "/dev/gaga-magisk/.magisk/sepolicy.rules"
           cp -a /system/etc/init/magisk/assets/* /data/adb/magisk
 EOF
