@@ -1,3 +1,6 @@
+🚫 This project is no longer used
+
+<!--
 ## systemMagisk
 
 System version of Magisk (Android 10+ Only). Install Magisk directly into system partition. 
@@ -39,3 +42,5 @@ sh /data/media/0/Documents/systemMagisk/script.sh
 ### Others
 
 - [One-click version](https://github.com/vadlike/baberedition/tree/OpenHub) by OpenHub (Made for Vphonegaga Android 10)
+
+-->
